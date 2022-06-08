@@ -1,0 +1,320 @@
+.dashboard-section{
+    background-image: url(/public/home/venues-bg.png);
+}
+.dashboard-membership{
+    background-image: url(/public/home/venues-bg.png);
+}
+.dashboard-box{
+    position: relative;
+    border-radius: 10px;
+    background-color: white;
+    box-shadow: 0px 5px 7px -1px rgba(0,0,0,0.2);
+    -webkit-box-shadow: 0px 5px 7px -1px rgba(0,0,0,0.2);
+    -moz-box-shadow: 0px 5px 7px -1px rgba(0,0,0,0.2);
+    transition: 0.3s;
+    border:2px solid rgb(216, 207, 207);
+    margin-bottom: 25px;
+    padding: 10px;
+}
+.dashboard-btn{
+    padding: 10px;
+    font-size: 20px;
+    text-decoration: none;
+    color: black;
+    font-weight: 400px
+}
+
+.dashboard-btn:hover{
+    color: rgb(163, 157, 157)
+}
+.box-heading{
+    background-color: #FF6085;
+    color: #fff;
+    padding: 5px;
+    border-radius: 5px;
+    text-align: center;
+}
+.box-heading h4{ 
+    color: #fff
+}
+.box-headingg{
+    background-color: #FF6085;
+    padding: 5px;
+    border-radius: 5px;
+    margin-top:15px;
+    text-align: center;
+}
+.box-headingg h4{ 
+    color: #fff
+}
+.form-control{
+    width: 100%;
+}
+.form-picture{
+    width: 100%;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    margin-left: 20px
+}
+.mar{
+    width: 100%;
+    margin-top:10px;
+}
+.info-h{
+    text-align: start;
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+    margin-top: 5px
+}
+.radio{
+    display: flex;
+    flex-direction: row;
+}
+.radio-p{
+    font-size: 18px;
+    font-weight: bold;
+    margin-top: 15px
+}
+.radio-b{
+    margin-left: 10px;
+    font-size: 16px;
+    display: inline-block;
+}
+.radio-flex{
+    display: inline-block;
+    font-size: 15px;
+}
+.form-line{
+    height:2px;
+    width: 95%;
+    border-radius: 2px;
+    background-color:rgb(209, 198, 198);
+    margin-left: 20px
+}
+.formline{
+    height:6px;
+    width: 100%;
+    border-radius: 2px;
+    background-color:rgb(209, 198, 198);
+    margin-bottom: 20px;
+}
+.info-padding{
+    padding-top: 25px;
+    padding-bottom:25px;
+    padding-left: 10px;
+}
+.submit-btn{
+    background-color: #FF6085;
+    border:1px solid #FF6085;
+    width: 250px;
+    border-radius: 10px;
+    padding:20px 35px;
+    text-align: center;
+    color:white;
+    font-size: 18px;
+    font-family: 'Poppins', sans-serif;
+    letter-spacing: -0.4px;
+    font-weight: 500;  
+    margin-top:20px;
+    transition: 0.3s;
+    outline:none;
+}
+
+
+
+.form-submit{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+/* 
+---------------------------------------------------------------- */
+.vendorBox{
+    position: relative;
+    border-radius: 10px;
+    background-color: white;
+    box-shadow: 0px 5px 7px -1px rgba(0,0,0,0.2);
+    -webkit-box-shadow: 0px 5px 7px -1px rgba(0,0,0,0.2);
+    -moz-box-shadow: 0px 5px 7px -1px rgba(0,0,0,0.2);
+    transition: 0.3s;
+    border:2px solid rgb(216, 207, 207);
+    margin-bottom: 25px;
+    padding: 10px;
+    cursor: pointer;
+}
+.vendor-h{
+    font-size:30px; 
+    margin-top: 20px;
+    color: #FF6085;
+    margin-bottom: 30px;
+    font-weight: bold;
+    text-align: center;
+}
+.vendor-h2{
+    font-size: 25px;
+    margin-bottom: 20px;
+    font-weight: 400;
+    margin-top: 30px;
+    font-weight: bold;
+}
+.vendorMonth{
+  font-size: 14px;
+  opacity: 1;
+  font-weight: normal;
+}
+.vendorPara p{
+    font-size: 18px;
+    height:35px;
+ 
+}
+.vendorBox .vendorBox-tick{
+  width:28px;
+  height:28px;
+}
+.vendorBox .vendorBox-option{
+  height:28px;
+  display:flex;
+  align-items:center; 
+  margin-top: 25px
+}
+.vendorBox .vendorBox-option .vendorBox-text{
+  font-weight: 300;
+  font-size:20px;
+  margin-left: 20px;
+}
+.vendorBox .vendorBox-btn{
+  outline:none;
+  background-color: white;
+  color:#2B2B2B;
+  border:1px solid #FF6085;
+  transition: 0.3s;
+  font-size:16px;
+  font-weight: 600;
+  padding:20px;
+  font-family: 'Poppins', sans-serif;
+  width: 50%;
+  border-radius: 5px;
+  margin-top: 60px;
+  margin-bottom: 20px;
+}
+.vendorBox .vendorBox-btn:hover{
+  background-color: #FF6085;
+  color:white;
+}
+.freeTrial{
+    background-color: #F7F8FE;
+}
+.req-div{
+    display: flex;
+    justify-content:center
+}
+.h3-text{
+    text-align: center;
+    font-size: 16px !important;
+}
+
+/* ---------------------------------------------------------------- */ 
+
+.porfolio-label{
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+.form-portfolio{
+    width: 50%;
+    border: 1px solid rgb(170, 163, 163);
+}
+
+.upload-btn{
+    background-color: #FF6085;
+    border:1px solid #FF6085;
+    width: 180px;
+    border-radius: 10px;
+    padding:20px 35px;
+    text-align: center;
+    color:white;
+    font-size: 18px;
+    font-family: 'Poppins', sans-serif;
+    letter-spacing: -0.4px;
+    font-weight: 500;  
+    margin-top:20px;
+    transition: 0.3s;
+    outline:none;
+    height: auto;
+}
+.text-port{
+    text-align: center;
+    font-size: 40px !important;
+    color:#FF6085;
+    margin-top: 20px;
+    margin-bottom: 60px !important;
+}
+.guide-h5 {
+    font-weight: bold !important;
+}
+
+.guide-ul li{ 
+    font-size: 20px
+}
+.dashboard-box h2{
+    text-align: center;
+    margin-bottom: 30px
+}
+.porfolio-img {
+    backdrop-filter: blur(50px) !important;
+    filter: blur(4px) !important;
+}
+.pink{
+    background-color: #FF6085;
+}
+.centered {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #fff !important;
+    font-size: 20px
+}
+
+.important{
+    color: red
+}
+
+.venue-box{
+    position: relative;
+    border-radius: 10px;
+    background-color: white;
+    box-shadow: 0px 5px 7px -1px rgba(0,0,0,0.2);
+    -webkit-box-shadow: 0px 5px 7px -1px rgba(0,0,0,0.2);
+    -moz-box-shadow: 0px 5px 7px -1px rgba(0,0,0,0.2);
+    transition: 0.3s;
+    border:1px solid white;
+}
+.venue-box:hover{
+    border:1px solid #FF6085;
+}
+.venue-box .venue-img{
+    border-radius: 10px;
+    width: 100%;
+}
+.venue-box .venue-details{
+    padding:20px;
+}
+.venue-box .venue-details .venue-name{
+    color:#FF6085;
+    font-size: 20px;
+    font-weight: 500;
+    line-height: 30px;
+    text-align: left;
+    margin-bottom: 10px;
+}
+.venue-box .venue-details .venue-price{
+    font-size: 16px;
+    line-height: 24px;
+    text-align: left;
+    font-weight: 400;
+}
+.dash-h1 h1{
+    margin-bottom: 20px
+}

@@ -1,0 +1,111 @@
+.blogs-box{
+    background-color: white;
+    padding:10px;
+    border-radius: 10px;
+    margin-top: 20px;
+}
+.blogs-box .blogs-img-box{
+    border-radius: 10px;
+    overflow: hidden;
+    width:100%;
+    
+}
+.blogs-box .blogs-img-box .blogs-img{
+    width: 100%;
+    transition: 0.3s;
+    height:300px
+}
+.blogs-box .blogs-details{
+    padding:0px 10px;
+}
+.blogs-box .blogs-details .blogs-title{
+    font-size: 24px;
+    color:#FF6085;
+    font-weight:600;
+    line-height: 30px;
+    text-align: left;
+    margin-bottom: 5px;
+    margin-top:20px;
+}
+.blogs-box .blogs-details .blogs-description{
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 30px;
+    text-align: left;
+    margin-bottom: 5px;
+}
+.blogs-box .blogs-details .blogs-date{
+    font-size: 14px;
+    font-weight: 400;
+    opacity: 0.8;
+    line-height: 30px;
+    text-align: left;
+    margin-bottom: 5px;
+}
+.blogs-box:hover .blogs-img-box .blogs-img{
+    transform: scale(1.1);
+}
+
+.blog-text{
+    display: flex;
+    text-align: center;
+    flex-direction: column;
+}
+.blog-text h1{
+    font-size: 50px
+}
+.blog-text p{
+    font-size: 22px;
+    margin-top: 80px;
+    color: rgb(160, 149, 149);
+    padding-bottom: 60px;
+}
+.blog-text h4{
+    font-size: 28px;
+    margin-top: 60px;
+    margin-bottom: 60px;
+    color: #FF6085;
+}
+.blog-img{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.blog-img img{
+    margin-top: 30px
+}
+.messagefields{
+    background-color: white;
+    border-radius: 10px;
+    border:1px solid #FF6085;
+    padding:20px;
+    font-size: 16px;
+    outline: none;
+    transition: 0.3s;
+    margin-bottom: 20px;
+    width: 100%;
+}
+.blog-btn{
+    background-color: #FF6085;
+    border: 1px solid #FF6085;
+    width: 30% !important;
+    border-radius: 10px;
+    padding: 20px 35px;
+    text-align: center;
+    color: white;
+    font-size: 18px;
+    font-family: 'Poppins', sans-serif;
+    letter-spacing: -0.4px;
+    font-weight: 500;
+    margin-top: 20px;
+    transition: 0.3s;
+    outline: none;
+    float: right;
+}
+.blogdiv{
+    display: flex;
+    align-items: right;
+    justify-content: flex-end;
+}
+
