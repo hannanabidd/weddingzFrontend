@@ -10,11 +10,14 @@ function VendorLogin(){
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [, setUser] = useContext(UserContext);
+    const [disable, setDisable] = useState(true);
     const navigate = useNavigate();
     useEffect(()=>{
         document.getElementById("toolbar").style.display="none";
     })
-
+    useEffect(()=> {
+        checkFinalValidation()
+    })
     function handleEmail(e){
         setEmail(e.target.value)
     }
@@ -35,6 +38,16 @@ function VendorLogin(){
         document.getElementById("form-overlay").style.display = "none"
         document.getElementById("failed").style.display = "block"
     }    
+
+    function checkFinalValidation(){
+        if(email !== ''  && password !== ''){
+            setDisable(false)
+        }
+        else{
+            setDisable(true)
+        }
+    }
+
     const SubmitLogin = async(e) => {
         e.preventDefault();
         const headers = {
@@ -111,7 +124,7 @@ function VendorLogin(){
                                     <form className='form-row' onSubmit={SubmitLogin}>
                                         <input className='login-email col-lg-12' onChange={handleEmail} name='email' placeholder='Email..' type="email" required />
                                         <input className='login-email col-lg-12' onChange={handlePassword} name='password' placeholder='Password..' type="password" required />
-                                        <button className='view-more-btn' type='submit' onClick={() => {overlayFunctionOn(); }}>
+                                        <button  type='submit' onClick={() => {overlayFunctionOn(); }} className={`view-more-btn ${disable ? "opacity-03": "opacity-01"}`} disabled={disable}>
                                             Login
                                         </button>
                                     </form>

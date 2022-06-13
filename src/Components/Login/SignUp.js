@@ -2,6 +2,7 @@ import React, { Fragment, useEffect, useState } from 'react';
 import {Link, useNavigate} from 'react-router-dom';
 import { signUpURL } from '../URLs';
 import './login.css';
+import {isEmail, isStrongPassword} from 'validator';
 
 
 function SignUp(){
@@ -10,22 +11,65 @@ function SignUp(){
     const [email, setEmail] = useState('');
     const [name, setName] = useState('');
     const navigate = useNavigate();
+    const [emailError, setEmailError] = useState('')
+    const [invalid, setInvalid] = useState(false)
+    const [valid, setValid] = useState(false)
+    const [disable, setDisable] = useState(true);
+    const [invalidSecond, setInvalidSecond] = useState(false)
+    const [validSecond, setValidSecond] = useState(false)
+
     useEffect(()=>{
         document.getElementById("toolbar").style.display="none";
 
     })
+    useEffect(()=> {
+        checkPassword()
+        checkFinalValidation()
+    })
     function firstPassword(e){
+        e.preventDefault();
         setPassword(e.target.value)
+        if(isStrongPassword(e.target.value, {
+            minLength:8, minLowercase:1,minSymbols:1,minUppercase:1
+        })){
+            setInvalid(false)
+            setValid(true)
+        }
+        else{
+            setValid(false)
+            setInvalid(true)
+        }
     }
     function secondPassword(e){
+        e.preventDefault();
         setConfirmPassword(e.target.value)
+        if(isStrongPassword(e.target.value, {
+            minLength:8, minLowercase:1,minSymbols:1,minUppercase:1
+        })){
+            setInvalidSecond(false)
+            setValidSecond(true)
+        }
+        else{
+            setInvalidSecond(true)
+            setValidSecond(false)
+        }
     }
     function userName(e){
+        e.preventDefault();
         setName(e.target.value)
     }
-    function userEmail(e){
+    function userEmail(e) {
+        e.preventDefault();
         setEmail(e.target.value)
+        if(isEmail(e.target.value)){
+            setEmailError('')
+        }
+        else{
+            setEmailError('Invalid Email')
+        }
     }
+    
+  
     function overlayFunctionOn(){
         document.getElementById("form-overlay").style.display = "block"
     }
@@ -40,14 +84,32 @@ function SignUp(){
         document.getElementById("form-overlay").style.display = "none"
         document.getElementById("failed").style.display = "block"
     }
-    function checkPassword(e){
-        e.preventDefault();
-        if(password === confirmPassword){
-            console.log("true")
+    // function checkPassword(e){
+    //     e.preventDefault();
+    //     if(password === confirmPassword){
+    //         console.log("true")
+    //     }
+    //     else{
+    //         console.log(password, confirmPassword)
+    //         console.log("false")
+    //     }
+    // }
+    function checkPassword(){
+        if(password !== confirmPassword){
+            setInvalidSecond(true)
+            setValidSecond(false)
         }
         else{
-            console.log(password, confirmPassword)
-            console.log("false")
+            setInvalidSecond(false)
+        }
+    }
+
+    function checkFinalValidation(){
+        if(name !== '' && email !== ''  && password === confirmPassword && password !== ''){
+            setDisable(false)
+        }
+        else{
+            setDisable(true)
         }
     }
     const SubmitForm = async(e) => {
@@ -109,13 +171,34 @@ function SignUp(){
                                     Sign Up
                                 </h2>
                                 <form className='form-row' onSubmit={SubmitForm}>
-                                    <input className='login-email col-lg-12' name='email' onChange={userEmail} placeholder='Email..' type="email" required/>
-                                    <input className='login-email col-lg-12' name='name' onChange={userName} placeholder='Name...' type="name" required/>
-                                    <input className='login-email col-lg-12' name='password' onChange={firstPassword} placeholder='Password..' type="password" required/>
-                                    <input className='login-email col-lg-12' name='confirmPassword' onChange={secondPassword} placeholder='Confirm Password..' type="password" required/>
-                                    <button type='submit' onClick={overlayFunctionOn} className='view-more-btn'>
+                                     <div>
+                                          <input className='login-email col-lg-12' name='name' onChange={userName} placeholder='Name...' type="name" required/>
+                                    </div>
+                                    <div>
+                                            <input className={`login-email col-lg-12 ${emailError !== '' ? "error-border" : "" }`} name='email' onChange={userEmail} placeholder='Email..' type="email" required/>
+                                            <p className="input-info-text error-text-color">{emailError}</p>
+                                    </div>
+                                    <div className="email-container">
+                                        <div className="email-container">
+                                            <input className={`login-email col-lg-12 ${invalid ? 'error-border' : '' }`} name='password' onChange={firstPassword} placeholder='Password..' minLength="8" type="password" required/>
+                                            {/* <img className={`input-img ${invalid ? "" : "display-none"}`} src={process.env.PUBLIC_URL + '/home/error-img.svg'} alt="check0" />
+                                            <img className={`input-img ${valid ? "" : "display-none"}`} src={process.env.PUBLIC_URL + '/home/check.svg'} alt="check1" /> */}
+                                        </div>
+                                             <p className={`input-info-text ${invalid ? 'error-text-color' : ""}`}>Must have at least 8 characters with at least one capital letter and a special character</p>       
+                                    </div>
+                                    <div className="email-container">
+                                        <div className="email-container"> 
+                                            <input className={`login-email col-lg-12 ${invalidSecond ? 'error-border' : '' }`} name='confirmPassword' onChange={secondPassword} placeholder='Confirm Password..' type="password" minLength="8" required/>
+                                            {/* <img className={invalidSecond ? "input-img" : "display-none"} src={process.env.PUBLIC_URL + '/home/error-img.svg'} alt="check2" />
+                                            <img className={validSecond ? "input-img" : "display-none"} src={process.env.PUBLIC_URL + '/home/check.svg'} alt="check3" /> */}
+                                        </div>
+                                            <p className={`input-info-text col-lg-12 ${invalidSecond ? 'error-text-color' : ""}`}>Must have at least 8 characters with at least one capital letter and a special character</p>
+                                    </div>
+                                    <Link to="/login">
+                                    <button type='submit' onClick={overlayFunctionOn} className={`view-more-btn ${disable ? "opacity-03": "opacity-01"}`} disabled={disable}>
                                         Sign Up
                                     </button>
+                                    </Link>
                                 </form>
                             </div>
                             <div className='col-lg-12 flex-vh-center-column'>

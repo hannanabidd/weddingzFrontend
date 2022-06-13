@@ -4,6 +4,7 @@ import LgHeadings from "../Common/LgHeadings";
 import { parlorURL } from "../URLs";
 import './vendor.css';
 import Footer from "../Footer/Footer"
+import { Breadcrumb } from "antd"
 
 
 function Parlor(){
@@ -34,9 +35,14 @@ function Parlor(){
         <Fragment>
         <section className="normal-section popular-venues-section">
             <div className="container">
-                <div className="row">
-                    <div className="col-12">
+                <div className="row ">
+                    <div className="col-12 paddingbottom">
                         <LgHeadings heading_name="Best Beauty Parlors in Lahore" />
+                        <Breadcrumb>
+                            <Breadcrumb.Item><a className="bread-text"  href="/">Home</a></Breadcrumb.Item>
+                            <Breadcrumb.Item> <a className="bread-text" href="/vendorcategories">Vendor Categories</a></Breadcrumb.Item>  
+                            <Breadcrumb.Item> <a className="bread-text" href="/bridal-makeup">Beauty Parlors</a></Breadcrumb.Item>           
+                        </Breadcrumb>
                     </div>
                     {parlorData.map((i=> {
                         return(

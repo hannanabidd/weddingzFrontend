@@ -1,8 +1,9 @@
-import React, {useState, Fragment, useContext} from "react";
+import React, {useState, Fragment, useContext, useEffect} from "react";
 import { Link, useNavigate } from "react-router-dom";
 import LgHeadings from "../Common/LgHeadings";
 import {UserContext} from "../UserContext";
 import { createBlogURL } from "../URLs";
+import Loader from "../Loader"
 
 
 function CreateBlog() {
@@ -11,7 +12,15 @@ const [title, setTitle] = useState([]);
 const [shortDescription, setShortDescription] = useState([]);
 const [description, setDescription] = useState([]);
 const navigate = useNavigate();
-
+const[loader, SetLoader] = useState(false)
+    useEffect(() =>
+    setTimeout(() =>{
+        SetLoader(true)
+    },1500)[loader]  
+    )
+    if (!loader) {
+        return <Loader/>;
+    }
 
 function blogTitle(e){
     setTitle(e.target.value)
@@ -113,17 +122,18 @@ const SubmitForm = async(e) => {
                                     <textarea type="text" className="messagefields" placeholder="Detail Description" rows= "5" onChange={blogDescription} />
                                 </div>
                                 <div className="col-lg-6">  
-                                    <input type="text" className="messagefields" placeholder="Enter First Heading" onChange={blogTitle} />
+                                    <input type="text" className="messagefields" placeholder="Enter First Heading"  onChange={blogTitle} />
                                 </div>
                                 <div className="col-lg-6">  
-                                    <input type="text" className="messagefields" placeholder="Enter Second Heading" onChange={blogTitle} />
+                                    <input type="text" className="messagefields" placeholder="Enter Second Heading"  onChange={blogTitle} />
                                 </div>
                                 <div className="col-lg-6">  
-                                    <input type="text" className="messagefields" placeholder="Enter Third Heading" onChange={blogTitle} />
+                                    <input type="text" className="messagefields" placeholder="Enter Third Heading"  onChange={blogTitle} />
                                 </div>
                                 <div className="col-lg-6">  
-                                    <input type="text" className="messagefields" placeholder="Enter Four Heading" onChange={blogTitle} />
+                                    <input type="text" className="messagefields" placeholder="Enter Four Heading"  onChange={blogTitle} />
                                 </div>
+                                <p>NOTE: please select pictures accordingly. First picure will be your Cover Image</p>
                                 <div className="col-lg-12">
                                     <input type="file" name="image[]" id="image" className="form-picture"   multiple/>
                                 </div>

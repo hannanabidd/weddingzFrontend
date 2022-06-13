@@ -1,14 +1,13 @@
 import React, { Fragment, useEffect, useState,useContext } from 'react';
-import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { useParams } from 'react-router-dom';
 import { venueURL } from '../URLs';
 import Ratings from './Ratings';
 import {Stripe} from './Stripe';
 import DisplayReviews  from './DisplayReviews';
-import { Carousel } from 'react-responsive-carousel';
-// import 'style!css!react-responsive-carousel/lib/styles/carousel.css';
-import {UserContext} from "../UserContext"
-import Footer from '../Footer/Footer'
+import {UserContext} from "../UserContext";
+import Footer from '../Footer/Footer';
+import { Breadcrumb } from 'antd';
+import ImageGallery from "react-image-gallery";
 
 function Venue(){
     const [ user, setUser ] = useContext(UserContext)
@@ -128,13 +127,27 @@ function Venue(){
     Ratings(id)
     DisplayReviews(id)
     }
+
+    const images = data.photos.map((photo) => {
+        return {
+          original: photo,
+          originalHeight: "auto",
+          originalWidth: "100%",
+        };
+      });
+
     return(
 
         <section className="normal-section main-venue">
             <Fragment>
-            <div className="container">
-                <div className="row">
-                    <div className="col-lg-8">
+            <div className="container ">
+                     <Breadcrumb>
+                        <Breadcrumb.Item><a className="bread-text"  href="/">Home</a></Breadcrumb.Item>
+                        <Breadcrumb.Item> <a className="bread-text" href="/venues">Venues</a></Breadcrumb.Item>  
+                        <Breadcrumb.Item> <a className="bread-text" href="">{data.title}</a></Breadcrumb.Item>           
+                    </Breadcrumb>
+                <div className="row venueContainer">
+                    <div className="col-lg-8 ">
                         <div className="overlap">
                          <img className='venue-img' src={data.photos[1]} height="400px" width="100%" alt="" />
                          <div className='title-details'>
@@ -155,15 +168,14 @@ function Venue(){
                          </div>
                          </div>
                         <div  className='image-slider'>
-                         <Carousel showThumbs={true} showArrows={true}  swipeable={true} showIndicators={true} dynamicHeight={true} >
-                               {data.photos.map((i=>{
-                                return(
-                                    <div>
-                                        <img  src={i}  alt="no image" />
-                                    </div>
-                                )
-                            }))}                       
-                         </Carousel>
+                    
+                         <ImageGallery
+                                autoPlay={false}
+                                items={images}
+                                showBullets
+                                showThumbnails={false}
+                            />
+                         
                          </div>
                     </div>
                     <div className="col-lg-4">

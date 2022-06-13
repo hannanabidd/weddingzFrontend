@@ -158,3 +158,9 @@ a{
 .box-btn:hover{
   color: rgb(163, 157, 157)
 }
+.Breadcrumb .Breadcrumb.Item a{
+  font-size: 20px
+}
+.bread-text{
+  font-size: 20px
+}

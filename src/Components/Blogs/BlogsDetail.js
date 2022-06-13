@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import { blogsURL } from '../URLs';
 import {UserContext} from "../UserContext"
 import Footer from '../Footer/Footer';
+import {Breadcrumb} from 'antd';
 
 
 function BlogsDetail() {
@@ -50,7 +51,12 @@ function BlogsDetail() {
     <Fragment>
         <section className='normal-section '>
         <div className='container'>
-            <div className='row'>
+                 <Breadcrumb>
+                    <Breadcrumb.Item><a className="bread-text"  href="/">Home</a></Breadcrumb.Item>
+                    <Breadcrumb.Item> <a className="bread-text" href="/blogs">Blogs</a></Breadcrumb.Item>  
+                    <Breadcrumb.Item> <a className="bread-text">{data.title[0]}</a></Breadcrumb.Item>           
+                  </Breadcrumb>
+            <div className='row blogContainer'>
                 <div className='col-2'></div>
                 <div className='col-8 blog-text'>
                     <h1>{data.title[0]}<span className='bubble-span'>!</span></h1>
@@ -59,19 +65,19 @@ function BlogsDetail() {
                         <img src={data.photos[0]} alt="save money" height="100%" width="60%"/>
                      </div>
                 <div className="blog-img">
-                    <h4>Meet Tanishq and Tanishq</h4>
+                    <h4>Nikkah</h4>
                     <img src={data.photos[1]} alt="save money" height="100%" width="60%"/>
                 </div>
                 <div className="blog-img">
-                    <h4>Engagement!</h4>
+                    <h4>Mehndi</h4>
                     <img src={data.photos[2]} alt="save money" height="100%" width="60%"/>
                 </div>
                 <div className="blog-img">
-                    <h4>Cocktail!</h4>
+                    <h4>Barat</h4>
                     <img src={data.photos[3]} alt="save money" height="100%" width="60%"/>
                 </div>
                 <div className="blog-img">
-                    <h4>Moemnts of the Event</h4>
+                    <h4>Walima</h4>
                     <img src={data.photos[4]} alt="save money" height="100%" width="60%"/>
                 </div>
                 </div>

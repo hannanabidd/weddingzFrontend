@@ -4,7 +4,7 @@ import LgHeadings from "../Common/LgHeadings";
 import { photographersURL } from "../URLs";
 import './vendor.css';
 import Footer from "../Footer/Footer"
-
+import { Breadcrumb } from "antd"
 
 function Photographers(){
     const [photographersData, setphotographersData] = useState([])
@@ -35,8 +35,13 @@ function Photographers(){
         <section className="normal-section popular-venues-section">
             <div className="container">
                 <div className="row">
-                    <div className="col-12">
+                    <div className="col-12 paddingbottom">
                         <LgHeadings heading_name="Best Photographers In Lahore" />
+                        <Breadcrumb>
+                            <Breadcrumb.Item><a className="bread-text"  href="/">Home</a></Breadcrumb.Item>
+                            <Breadcrumb.Item> <a className="bread-text" href="/vendorcategories">Vendor Categories</a></Breadcrumb.Item>  
+                            <Breadcrumb.Item> <a className="bread-text" href="/photographers">Photographers</a></Breadcrumb.Item>           
+                        </Breadcrumb>
                     </div>
                     {photographersData.map((i=> {
                         return(

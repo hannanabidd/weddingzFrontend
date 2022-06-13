@@ -4,6 +4,7 @@ import LgHeadings from "../Common/LgHeadings";
 import { honeymoonURL } from "../URLs";
 import './vendor.css';
 import Footer from "../Footer/Footer"
+import { Breadcrumb } from "antd"
 
 
 function Honeymoon(){
@@ -35,8 +36,13 @@ function Honeymoon(){
         <section className="normal-section popular-venues-section">
             <div className="container">
                 <div className="row">
-                    <div className="col-12">
+                    <div className="col-12 paddingbottom">
                         <LgHeadings heading_name="Best Honeymoon Destination" />
+                        <Breadcrumb>
+                            <Breadcrumb.Item><a className="bread-text"  href="/">Home</a></Breadcrumb.Item>
+                            <Breadcrumb.Item> <a className="bread-text" href="/vendorcategories">Vendor Categories</a></Breadcrumb.Item>  
+                            <Breadcrumb.Item> <a className="bread-text" href="/honeymoon">Honeymoon</a></Breadcrumb.Item>           
+                        </Breadcrumb>
                     </div>
                     {honeymoonData.map((i=> {
                         return(

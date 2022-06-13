@@ -4,6 +4,8 @@ import LgHeadings from '../Common/LgHeadings';
 import { blogsURL } from "../URLs";
 import './blogs.css';
 import Footer from "../Footer/Footer"
+import {Breadcrumb} from "antd"
+import Loader from "../Loader"
 
 
 function Blogs(){
@@ -15,6 +17,14 @@ function Blogs(){
         category:"",
         photo:[],
     })
+    // useEffect(() =>
+    // setTimeout(() =>{
+    //     SetLoader(true)
+    // },1500)[loader]  
+    // )
+    // if (!loader) {
+    //     return <Loader/>;
+    // }
     useEffect(() => {
         async function fetchData(){
             const data = await fetch(blogsURL, {
@@ -40,6 +50,10 @@ function Blogs(){
                     <div className='col-12'>
                         <LgHeadings heading_name="Blogs" />
                     </div>
+                    <Breadcrumb>
+                        <Breadcrumb.Item><a className="bread-text"  href="/">Home</a></Breadcrumb.Item>
+                        <Breadcrumb.Item> <a className="bread-text" href="/blogs">blogs</a></Breadcrumb.Item>          
+                    </Breadcrumb>
                     {data?.data?.allBlogs?.map((i => {
                         return(
                             <div className='col-lg-4' key={i.id}>
@@ -67,6 +81,11 @@ function Blogs(){
                     }))}
                 </div>
             </div>
+            <Link to='/createblog'>
+            <div className="createblogimg">
+                 <img   src={process.env.PUBLIC_URL + '/home/Blog.png'} width="100%" height="350px"alt="check1" /> 
+            </div>
+            </Link>
         </section>
         <Footer/>
         </Fragment>

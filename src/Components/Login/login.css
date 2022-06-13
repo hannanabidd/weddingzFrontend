@@ -1,5 +1,5 @@
 .login-img{
-    height: 100vh;
+    height: 100%;
     width: 100%;
 }
 .login-box{
@@ -16,17 +16,7 @@
     margin-bottom: 50px;
     font-family: 'Poppins', sans-serif;
 }
-.login-email{
-    background-color: white;
-    border-radius: 10px;
-    border:1px solid #FF6085;
-    padding:20px;
-    font-size: 16px;
-    outline: none;
-    transition: 0.3s;
-    margin-bottom: 20px;
-    
-}
+
 .login-email:last-child{
     margin-bottom: 0px;
 }
@@ -65,4 +55,49 @@
 @keyframes spin {
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
+}
+.login-email:last-child{
+    margin-bottom: 20px
+}
+.input-img{
+    position: absolute;
+    right: 12px;
+    top:14px;
+}
+.input-info-text{
+    font-family: 'HKGrotesk-Medium';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 14px;
+    margin-bottom: 0px;
+    margin-top: 2px;
+    color: #7A888F;
+    padding-bottom: 20px;
+}
+.email-container{
+    position: relative;
+}
+.login-email{
+    background-color: white;
+    border-radius: 10px;
+    border:1px solid #FF6085;
+    padding:20px;
+    font-size: 16px;
+    outline: none;
+    transition: 0.3s;
+    margin-bottom: 20px;
+    position: relative;
+    box-sizing: border-box;
+
+}
+.error-text-color {
+    color: #d12d37!important;
+}
+.error-border{
+    border: 2px solid #D12D37 !important;
+}
+.error-border:focus-visible, .error-border:focus{
+    border: 2px solid #D12D37 !important;
+    outline: none;
 }

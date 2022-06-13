@@ -4,6 +4,7 @@ import LgHeadings from "../Common/LgHeadings";
 import { decorURL } from "../URLs";
 import './vendor.css';
 import Footer from "../Footer/Footer"
+import { Breadcrumb } from "antd"
 
 
 function Decor(){
@@ -37,6 +38,11 @@ function Decor(){
                 <div className="row">
                     <div className="col-12">
                         <LgHeadings heading_name="Best Decor Vendors in Lahore" />
+                        <Breadcrumb>
+                            <Breadcrumb.Item><a className="bread-text"  href="/">Home</a></Breadcrumb.Item>
+                            <Breadcrumb.Item> <a className="bread-text" href="/vendorcategories">Vendor Categories</a></Breadcrumb.Item>  
+                            <Breadcrumb.Item> <a className="bread-text" >Decoration Services</a></Breadcrumb.Item>           
+                        </Breadcrumb>
                     </div>
                     {decorData.map((i=> {
                         return(

@@ -3,23 +3,46 @@ import {Link, useNavigate} from 'react-router-dom';
 import { loginURL } from '../URLs';
 import axios from "axios";
 import './login.css';
-import { UserContext } from "../UserContext"
+import { UserContext } from "../UserContext";
+import validator from 'validator';
+import {isEmail, isStrongPassword} from 'validator';
+import SimpleBackdrop from '../BackDrop'
 
 
 function Login(){
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [role, setRole] = useState('');
-    const [name, setName] = useState('');
     const [user , setUser] = useContext(UserContext);
+    const [disable, setDisable] = useState(true);
+    const [emailError, setEmailError] = useState('')
+    const [loading, setLoading] = useState(false);
+	const [error, setError] = useState("");
+
 
     const navigate = useNavigate();
     useEffect(()=>{
         document.getElementById("toolbar").style.display="none";
     })
+    useEffect(()=> {
+        checkFinalValidation()
+    })
+    useEffect(()=>{
+		if(!error) return;
+		const id = setTimeout(() => setError(""), 4000);
 
-    function handleEmail(e){
+		return () => clearTimeout(id)
+	},[error])
+
+    function handleEmail(e) {
+        e.preventDefault();
         setEmail(e.target.value)
+        if(isEmail(e.target.value)){
+            setEmailError('')
+        }
+        else{
+            setEmailError('Invalid Email')
+        }
     }
     function handlePassword(e){
         setPassword(e.target.value)
@@ -39,8 +62,23 @@ function Login(){
         document.getElementById("form-overlay").style.display = "none"
         document.getElementById("failed").style.display = "block"
     }    
+
+    function checkFinalValidation(){
+        if(email != ''  && password != ''){
+            setDisable(false)
+        }
+        else{
+            setDisable(true)
+        }
+    }
     const SubmitLogin = async(e) => {
         e.preventDefault();
+        setLoading(true);
+        if(error) {
+			setError(error.response?.data);
+			setLoading(false);
+			return;
+		}
         const headers = {
             method:'POST',
             body:JSON.stringify({email, password, role: "customer"}),
@@ -48,8 +86,8 @@ function Login(){
                 "Content-Type":"application/json",
             })
         }
+        validator.isEmail('foo@gmail.com'); 
         const userData = await axios.post(loginURL, {email,password, role})
-        // console.log(userData)
         if(userData.status === 200){
             console.log(userData)
             localStorage.setItem("token",userData.data.token)
@@ -60,9 +98,10 @@ function Login(){
               );
             console.log(user)
             setUser(user.data.data.user)
+            
             return(
                 <Fragment>
-                    {hideOverlay()}
+                    {/* {hideOverlay()} */}
                     {navigate('/')}
                     {document.getElementById("toolbar").style.display="block"}
                 </Fragment>
@@ -83,22 +122,7 @@ function Login(){
 
     return(
         <section className=''>
-            <div id="form-overlay" onClick={overlayFunctionOff}>
-                <div className="loader" id="loader">
-                    <div className="loader-mini">
-                    </div>
-                </div>
-                <div style={{display:"none"}} id="success">
-                    <p style={{color:"green"}}>
-                        Success
-                    </p>
-                </div>                            
-                <div style={{display:"none"}} id="failed">
-                    <p style={{color:"red"}}>
-                        Failed
-                    </p>
-                </div>
-            </div>
+            <SimpleBackdrop loading={loading} />
             <div className='container-fluid' style={{paddingLeft:"0px", paddingRight:"0px"}}>
                 <div className='row' style={{marginLeft:"0px", marginRight:"0px"}}>
                     <div className='col-lg-6' style={{paddingLeft:"0px", paddingRight:"0px"}}>
@@ -112,9 +136,9 @@ function Login(){
                                     Login
                                 </h2>
                                 <form className='form-row' onSubmit={SubmitLogin}>
-                                    <input className='login-email col-lg-12' onChange={handleEmail} name='email' placeholder='Email..' type="email" required />
-                                    <input className='login-email col-lg-12' onChange={handlePassword} name='password' placeholder='Password..' type="password" required />
-                                    <button className='view-more-btn' type='submit' onClick={overlayFunctionOn}>
+                                    <input className='login-email col-lg-12' onChange={handleEmail} disabled={loading} id="outlined-basic" name='email' placeholder='Email..' type="email" required  />
+                                    <input className='login-email col-lg-12' onChange={handlePassword} disabled={loading} id="outlined-basic" name='password' placeholder='Password..' type="password" required />
+                                    <button  type='submit' onClick={SubmitLogin} disabled={loading} className={`view-more-btn ${disable ? "opacity-03": "opacity-01"}`} disabled={disable}>
                                         Login
                                     </button>
                                 </form>

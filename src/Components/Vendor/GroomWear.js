@@ -4,6 +4,7 @@ import LgHeadings from "../Common/LgHeadings";
 import { groomWearURL } from "../URLs";
 import './vendor.css';
 import Footer from "../Footer/Footer"
+import { Breadcrumb } from "antd"
 
 function GroomWear(){
     const [groomwearData, setGroomwearData] = useState([])
@@ -34,8 +35,13 @@ function GroomWear(){
         <section className="normal-section popular-venues-section">
             <div className="container">
                 <div className="row">
-                    <div className="col-12">
+                    <div className="col-12 paddingbottom">
                         <LgHeadings heading_name="Best Groom Wear's In Lahore" />
+                        <Breadcrumb>
+                            <Breadcrumb.Item><a className="bread-text"  href="/">Home</a></Breadcrumb.Item>
+                            <Breadcrumb.Item> <a className="bread-text" href="/vendorcategories">Vendor Categories</a></Breadcrumb.Item>  
+                            <Breadcrumb.Item> <a className="bread-text" href="/groom-wear">Groom Wear</a></Breadcrumb.Item>           
+                        </Breadcrumb>
                     </div>
                     {groomwearData.map((i=> {
                         return(

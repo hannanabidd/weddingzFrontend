@@ -2,7 +2,8 @@ import React, { Fragment, useEffect, useState } from 'react';
 import LgHeadings from '../Common/LgHeadings';
 import { venueURL } from '../URLs';
 import './compare.css';
-import Footer from "../Footer/Footer"
+import Footer from "../Footer/Footer";
+import {Breadcrumb} from 'antd';
 
 function Compare(){
     const [venueData, setVenueData] = useState([])
@@ -101,6 +102,11 @@ function Compare(){
                         <p className='compare-main-description'>
                             Compare the best weddings halls according to your need
                         </p>
+                        <Breadcrumb>
+                        <Breadcrumb.Item><a className="bread-text"  href="/">Home</a></Breadcrumb.Item>
+                        <Breadcrumb.Item> <a className="bread-text" href="/venues">Venues</a></Breadcrumb.Item> 
+                        <Breadcrumb.Item> <a className="bread-text" href="/compare">Compare</a></Breadcrumb.Item>           
+                    </Breadcrumb>
                     </div>
                     <div className='col-lg-6 flex-vh-center'>
                         <select onChange={handleChangeOne} className="compare-select">

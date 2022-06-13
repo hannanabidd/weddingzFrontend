@@ -3,9 +3,10 @@ import { useParams } from 'react-router-dom';
 import { vendorURL } from '../URLs';
 import '../Venue/venue.css' 
 import Ratings from './Ratings';
-import {UserContext} from "../UserContext"
-import DisplayReviews from "./DisplayReviews"
-
+import {UserContext} from "../UserContext";
+import DisplayReviews from "./DisplayReviews";
+import {Breadcrumb} from 'antd';
+import ImageGallery from "react-image-gallery";
 
 function VendorDetails(){
     const [ user, setUser ] = useContext(UserContext)
@@ -83,16 +84,29 @@ function VendorDetails(){
         </p>
     }
 
+    const images = data.photos.map((photo) => {
+        return {
+          original: photo,
+          originalHeight: "auto",
+          originalWidth: "100%",
+        };
+      });
+
 
   return (
     
     <section className="normal-section main-venue">
     <Fragment>
     <div className="container">
-        <div className="row">
+                    <Breadcrumb>
+                        <Breadcrumb.Item><a className="bread-text"  href="/">Home</a></Breadcrumb.Item>
+                        <Breadcrumb.Item> <a className="bread-text" href="/vendorcategories">Vendor Categories</a></Breadcrumb.Item>  
+                        <Breadcrumb.Item> <a className="bread-text">{data.title}</a></Breadcrumb.Item>           
+                    </Breadcrumb>
+        <div className="row vendorContainer">
             <div className="col-lg-8">
                 <div className="overlap">
-                 <img className='venue-img' src={data.photos[0]} height="400px" width="100%" alt="" />
+                 <img className='venue-img' src={data.photos[1]} height="400px" width="100%" alt="" />
                  <div className='title-details'>
                      <div className='row'>
                          <div className='col-lg-9'>
@@ -111,14 +125,12 @@ function VendorDetails(){
                  </div>
                  </div>
                  <div className='image-slider'>
-                       {/* {data.photos.map((i=>{
-                        return(
-                              <img className='image' src={i} height="400px" width="100%" alt="" />
-                        )
-                    }))} */}
-                   {/* <ImageSlider slides={SliderData} />
-                       <SliderData/> */}
-                       
+                          <ImageGallery
+                                autoPlay={false}
+                                items={images}
+                                showBullets
+                                showThumbnails={false}
+                            />
                  </div>
             </div>
             <div className="col-lg-4">

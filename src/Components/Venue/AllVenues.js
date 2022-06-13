@@ -8,8 +8,10 @@ import TextField from '@mui/material/TextField';
 import Stack from '@mui/material/Stack';
 import Autocomplete from '@mui/material/Autocomplete';
 import Footer from "../Footer/Footer"
+import { Breadcrumb } from 'antd';
+import PageControl from "./PageControl"
 
-function AllVenues(){
+function AllVenues(pageNumber, nextPage, previousPage){
     const [search, setSearch] = useState("");
     const [venueData, setVenueData] = useState([])
     const [loader, setLoader] = useState(false)
@@ -55,6 +57,10 @@ function AllVenues(){
                     <div className="col-12">
                         <LgHeadings heading_name="Venues" />
                     </div>
+                    <Breadcrumb>
+                        <Breadcrumb.Item><a className="bread-text"  href="/">Home</a></Breadcrumb.Item>
+                        <Breadcrumb.Item> <a className="bread-text" href="/venues">Venues</a></Breadcrumb.Item>           
+                    </Breadcrumb>
                     <Stack spacing={2} sx={{ width: 300 }} className="searchbar">
                         <Autocomplete 
                             id="free-solo-demo"
@@ -63,6 +69,11 @@ function AllVenues(){
                             renderInput={(params) => <TextField value={search} onChange={e=>setSearch(e.target.value)} {...params} label="search here" />}
                         />
                     </Stack>
+                    {/* <PageControl
+                        pageNumber={pageNumber}
+                        nextPage={nextPage}
+                        previousPage={previousPage}
+                    />             */}
                     <div className="row">
                     {venueData.map((i=> {
                         return(
@@ -89,7 +100,8 @@ function AllVenues(){
                             </div>
                         )
                     }))}   
-                    </div>              
+                    </div>  
+                    
                 </div>
             </div>
         </section>

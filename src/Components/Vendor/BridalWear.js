@@ -4,6 +4,7 @@ import LgHeadings from "../Common/LgHeadings";
 import { bridalWearURL } from "../URLs";
 import './vendor.css';
 import Footer from "../Footer/Footer"
+import { Breadcrumb } from "antd";
 
 function BridalWear(){
     const [bridalwearData, setBridalwearData] = useState([])
@@ -34,11 +35,17 @@ function BridalWear(){
         <section className="normal-section popular-venues-section">
             <div className="container">
                 <div className="row">
-                    <div className="col-12">
+                    <div className="col-12 paddingbottom">
                         <LgHeadings heading_name="Best Bridal Wear's In Lahore" />
-                    </div>
+                        <Breadcrumb>
+                            <Breadcrumb.Item><a className="bread-text"  href="/">Home</a></Breadcrumb.Item>
+                            <Breadcrumb.Item> <a className="bread-text" href="/vendorcategories">Vendor Categories</a></Breadcrumb.Item>  
+                            <Breadcrumb.Item> <a className="bread-text" href="/bridal-wear">Bridal Wear</a></Breadcrumb.Item>           
+                        </Breadcrumb>
+                    </div>          
                     {bridalwearData.map((i=> {
                         return(
+                            
                             <div className="col-lg-4" key={i._id}>
                                 <Link 
                                     to={{pathname:`/bridal-wear/${i._id}`}}
@@ -59,6 +66,7 @@ function BridalWear(){
                                     </div>
                                 </Link>
                             </div>
+
                         )
                     }))}
                 </div>

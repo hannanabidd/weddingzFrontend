@@ -1,8 +1,6 @@
 import React, {Fragment, useState, useContext, useEffect} from 'react';
 import axios from "axios";
 import {BrowserRouter, Routes, Route} from "react-router-dom";
-import "react-responsive-carousel/lib/styles/carousel.min.css";
-import Footer from '../src/Components/Footer/Footer';
 import Compare from './Components/Compare/Compare';
 import Home from './Components/Home/Home';
 import Login from './Components/Login/Login';
@@ -40,6 +38,7 @@ import { UserContext } from "./Components/UserContext"
 import Gallery from './Components/Gallery/Gallery';
 import CreateBlog from './Components/Blogs/CreateBlog';
 import BlogsDetails from './Components/Blogs/BlogsDetail';
+import PaymentSuccess from './Components/Venue/PaymentSuccess';
 
 function App() {
   const [sideDrawerOpen, setSideDrawerOpen] = useState(false)
@@ -123,8 +122,8 @@ function App() {
           <Route path='/blogs/:id' exact element={<BlogsDetails />} />
           <Route path='/gallery' exact element={<Gallery />} />
           <Route path='/createblog' exact element={<CreateBlog />} />
+          <Route path='/paymentsuccessfull' exact element={<PaymentSuccess />} />
         </Routes>
-        
       </BrowserRouter>
     </Fragment>
   );
