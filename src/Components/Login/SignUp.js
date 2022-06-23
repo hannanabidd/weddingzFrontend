@@ -84,16 +84,7 @@ function SignUp(){
         document.getElementById("form-overlay").style.display = "none"
         document.getElementById("failed").style.display = "block"
     }
-    // function checkPassword(e){
-    //     e.preventDefault();
-    //     if(password === confirmPassword){
-    //         console.log("true")
-    //     }
-    //     else{
-    //         console.log(password, confirmPassword)
-    //         console.log("false")
-    //     }
-    // }
+  
     function checkPassword(){
         if(password !== confirmPassword){
             setInvalidSecond(true)
@@ -122,7 +113,7 @@ function SignUp(){
             })
         }
         const userData = await fetch(signUpURL, headers)
-        if(userData.status === 201){
+        if(userData.status === 200){
             console.log(userData.status)
             return(
                 <Fragment>
@@ -131,6 +122,7 @@ function SignUp(){
             )
         }
         else{
+            console.log("hello")
             console.log(userData.status)
             return(
                 <Fragment>

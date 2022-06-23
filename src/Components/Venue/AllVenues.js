@@ -1,4 +1,4 @@
-import React, {useEffect, useState, Fragment} from "react";
+import  React, {useEffect, useState, Fragment} from "react";
 import { Link } from "react-router-dom";
 import LgHeadings from "../Common/LgHeadings";
 import { venueURL } from "../URLs";
@@ -9,12 +9,24 @@ import Stack from '@mui/material/Stack';
 import Autocomplete from '@mui/material/Autocomplete';
 import Footer from "../Footer/Footer"
 import { Breadcrumb } from 'antd';
-import PageControl from "./PageControl"
+import Pagination from '@mui/material/Pagination';
+// import PageControl from "./PageControl"
+import usePagination from "./Pagination";
 
 function AllVenues(pageNumber, nextPage, previousPage){
     const [search, setSearch] = useState("");
     const [venueData, setVenueData] = useState([])
     const [loader, setLoader] = useState(false)
+    let [page, setPage] = useState(1);
+
+    const PER_PAGE = 12;
+    const count = Math.ceil(venueData.length / PER_PAGE);
+    const _DATA = usePagination(venueData, PER_PAGE);
+
+    const pageChange = (e, p) => {
+        setPage(p);
+        _DATA.jump(p);
+    };
     useEffect(() => {
         async function fetchData(){
             const data = await fetch(venueURL, {
@@ -29,6 +41,7 @@ function AllVenues(pageNumber, nextPage, previousPage){
         }
         fetchData()
     }, [])
+    
     useEffect(()=>{
         if(!search) return;
         async function fetchData(){
@@ -74,8 +87,9 @@ function AllVenues(pageNumber, nextPage, previousPage){
                         nextPage={nextPage}
                         previousPage={previousPage}
                     />             */}
+                   
                     <div className="row">
-                    {venueData.map((i=> {
+                    {_DATA.currentData().map((i=> {
                         return(
                             <div className="col-lg-4" key={i._id}>
                                 <Link 
@@ -101,7 +115,15 @@ function AllVenues(pageNumber, nextPage, previousPage){
                         )
                     }))}   
                     </div>  
-                    
+                    <Stack spacing={2}>
+                        
+                        <Pagination count={count}
+                            size="large"
+                            page={page}
+                            variant="outlined"
+                            shape="rounded"
+                            onChange={pageChange} />
+                    </Stack>
                 </div>
             </div>
         </section>

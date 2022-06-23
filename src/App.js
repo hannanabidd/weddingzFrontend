@@ -1,3 +1,4 @@
+import 'react-notifications/lib/notifications.css';
 import React, {Fragment, useState, useContext, useEffect} from 'react';
 import axios from "axios";
 import {BrowserRouter, Routes, Route} from "react-router-dom";

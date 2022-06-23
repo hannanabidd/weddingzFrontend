@@ -16,14 +16,17 @@ const stripe  =await loadStripe('pk_test_51KebqKLo3oIyoa1DhqnFEIdKktE5bEqBTSCpUE
   
       // 2) Create checkout form + chanre credit card
       
-      await stripe.redirectToCheckout({
+      
+      const res = await stripe.redirectToCheckout({
         sessionId: session.data.session.id
       });
-      
+      console.log(res);
     } catch (err) {
       console.log(err);
     }
   };
+
+  
 
 
 export default Stripe;

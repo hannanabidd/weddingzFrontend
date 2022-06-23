@@ -7,6 +7,7 @@ import { UserContext } from "../UserContext";
 import validator from 'validator';
 import {isEmail, isStrongPassword} from 'validator';
 import SimpleBackdrop from '../BackDrop'
+import {NotificationContainer, NotificationManager} from 'react-notifications';
 
 
 function Login(){
@@ -74,20 +75,17 @@ function Login(){
     const SubmitLogin = async(e) => {
         e.preventDefault();
         setLoading(true);
-        if(error) {
-			setError(error.response?.data);
-			setLoading(false);
-			return;
-		}
-        const headers = {
-            method:'POST',
-            body:JSON.stringify({email, password, role: "customer"}),
-            headers: new Headers({
-                "Content-Type":"application/json",
-            })
-        }
+        // if(error) {
+		// 	setError(error.response?.data);
+		// 	setLoading(false);
+		// 	return;
+		// }
+      
         validator.isEmail('foo@gmail.com'); 
+
+        console.log("hello")
         const userData = await axios.post(loginURL, {email,password, role})
+        console.log(userData)
         if(userData.status === 200){
             console.log(userData)
             localStorage.setItem("token",userData.data.token)
@@ -109,10 +107,12 @@ function Login(){
         }
         else{
             console.log(userData.status)
+            setLoading(false)
+            NotificationManager.error('Error message', 'Click me!', 5000)
             return(
                 <Fragment>
                     {navigate('/login')}
-                    {keepOverlay()}
+                    {/* {keepOverlay()} */}
                 </Fragment>
             )
         }
@@ -121,7 +121,7 @@ function Login(){
 
 
     return(
-        <section className=''>
+        <section className='scs'>
             <SimpleBackdrop loading={loading} />
             <div className='container-fluid' style={{paddingLeft:"0px", paddingRight:"0px"}}>
                 <div className='row' style={{marginLeft:"0px", marginRight:"0px"}}>
@@ -138,7 +138,7 @@ function Login(){
                                 <form className='form-row' onSubmit={SubmitLogin}>
                                     <input className='login-email col-lg-12' onChange={handleEmail} disabled={loading} id="outlined-basic" name='email' placeholder='Email..' type="email" required  />
                                     <input className='login-email col-lg-12' onChange={handlePassword} disabled={loading} id="outlined-basic" name='password' placeholder='Password..' type="password" required />
-                                    <button  type='submit' onClick={SubmitLogin} disabled={loading} className={`view-more-btn ${disable ? "opacity-03": "opacity-01"}`} disabled={disable}>
+                                    <button  type='submit' onClick={SubmitLogin} disabled={loading} className={`view-more-btn ${disable ? "opacity-03": "opacity-01"}`} >
                                         Login
                                     </button>
                                 </form>
@@ -156,6 +156,7 @@ function Login(){
                     </div>
                 </div>
             </div>
+            <NotificationContainer/>
         </section>
     )
 }

@@ -1,6 +1,6 @@
-export const venueURL="https://weddingz-server.herokuapp.com/api/v1/venues/"
+export const venueURL="https://weddingz-server.herokuapp.com/api/v1/venues"
 export const signUpURL="https://weddingz-server.herokuapp.com/api/users/signup"
-export const loginURL="https://weddingz-server.herokuapp.com/api/users/login"
+export const loginURL="http://127.0.0.1:6000/api/users/login"
 export const vendorURL="https://weddingz-server.herokuapp.com/api/v1/vendors/"
 export const photographersURL="https://weddingz-server.herokuapp.com/api/v1/vendors/photographers"
 export const parlorURL="https://weddingz-server.herokuapp.com/api/v1/vendors/parlors"
