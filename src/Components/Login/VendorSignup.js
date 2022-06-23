@@ -122,7 +122,7 @@ function SignUp(){
             })
         }
         const userData = await fetch(signUpURL, headers)
-        if(userData.status === 201){
+        if(userData.status === 200){
             console.log(userData.status)
             return(
                 <Fragment>

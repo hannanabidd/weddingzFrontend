@@ -12,6 +12,7 @@ function DisplayReviews() {
         review:"",
         createdAt:"",
         id:"",
+        reviewRating:""
     })
     let { id } = useParams();
     useEffect(() => {

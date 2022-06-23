@@ -49,20 +49,20 @@ function Login(){
         setPassword(e.target.value)
     }
     
-    function overlayFunctionOn(){
-        document.getElementById("form-overlay").style.display = "block"
-    }
-    function overlayFunctionOff(){
-        document.getElementById("form-overlay").style.display = "none"
-    }
-    function hideOverlay(){
-        document.getElementById("form-overlay").style.display = "none"
-        document.getElementById("success").style.display = "block"
-    }
-    function keepOverlay(){
-        document.getElementById("form-overlay").style.display = "none"
-        document.getElementById("failed").style.display = "block"
-    }    
+    // function overlayFunctionOn(){
+    //     document.getElementById("form-overlay").style.display = "block"
+    // }
+    // function overlayFunctionOff(){
+    //     document.getElementById("form-overlay").style.display = "none"
+    // }
+    // function hideOverlay(){
+    //     document.getElementById("form-overlay").style.display = "none"
+    //     document.getElementById("success").style.display = "block"
+    // }
+    // function keepOverlay(){
+    //     document.getElementById("form-overlay").style.display = "none"
+    //     document.getElementById("failed").style.display = "block"
+    // }    
 
     function checkFinalValidation(){
         if(email != ''  && password != ''){
@@ -84,31 +84,38 @@ function Login(){
         validator.isEmail('foo@gmail.com'); 
 
         console.log("hello")
-        const userData = await axios.post(loginURL, {email,password, role})
-        console.log(userData)
-        if(userData.status === 200){
-            console.log(userData)
-            localStorage.setItem("token",userData.data.token)
-            const user = await axios.get(
-                `https://weddingz-server.herokuapp.com/api/users/me`,{headers:{
-                    Authorization: `Bearer ${localStorage.getItem("token")}`
-                }}
-              );
-            console.log(user)
-            setUser(user.data.data.user)
-            
-            return(
-                <Fragment>
-                    {/* {hideOverlay()} */}
-                    {navigate('/')}
-                    {document.getElementById("toolbar").style.display="block"}
-                </Fragment>
-            )
-        }
-        else{
+        try{
+            const userData = await axios.post(loginURL, {email,password},{headers:{
+                'Content-Type': 'application/json'}})
             console.log(userData.status)
+    
+            if(userData.status === 200){
+    
+                console.log(userData)
+                
+                localStorage.setItem("token",userData.data.token)
+                const user = await axios.get(
+                    `https://weddingz-server.herokuapp.com/api/users/me`,{headers:{
+                        Authorization: `Bearer ${localStorage.getItem("token")}`
+                    }}
+                  );
+                console.log(user)
+                setUser(user.data.data.user)
+                
+                return(
+                    <Fragment>
+                        {/* {hideOverlay()} */}
+                        {navigate('/')}
+                        {document.getElementById("toolbar").style.display="block"}
+                    </Fragment>
+                )
+    
+            }
+        }
+        catch (error) {
             setLoading(false)
-            NotificationManager.error('Error message', 'Click me!', 5000)
+            console.log(error.response)
+            NotificationManager.error(error.response.data, 'Click me!', 5000)
             return(
                 <Fragment>
                     {navigate('/login')}

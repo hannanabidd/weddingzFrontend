@@ -37,16 +37,16 @@ function Ratings() {
       document.getElementById("form-overlay").style.display = "none"
       document.getElementById("failed").style.display = "block"
   }
-const reviewRating = 3
+// const reviewRating = 3
   const SubmitForm = async(e) => {
     e.preventDefault();
     const formData = new FormData();
     formData.append('review', review);
-    formData.append('reviewRating', reviewRating);
+    formData.append('reviewRating', currentValue);
 
     const data = await fetch( `https://weddingz-server.herokuapp.com/api/v1/venues/${venueId}/reviews`, {
       method:'POST', 
-      body:JSON.stringify({review, reviewRating}),
+      body:JSON.stringify({review, currentValue}),
       headers:{
         "Content-Type": "application/json",
         Authorization: `Bearer ${localStorage.getItem("token")}`
@@ -54,6 +54,7 @@ const reviewRating = 3
   })
     if(data.status === 200){ 
         console.log(data.status)
+        window.location.reload()
         return(
             <Fragment>
                 {hideOverlay()}
@@ -80,6 +81,7 @@ const reviewRating = 3
 
   const handleClick = value => {
     setCurrentValue(value)
+    console.log(value)
   }
 
   const handleMouseOver = newHoverValue => {
