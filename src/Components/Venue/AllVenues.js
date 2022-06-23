@@ -10,10 +10,9 @@ import Autocomplete from '@mui/material/Autocomplete';
 import Footer from "../Footer/Footer"
 import { Breadcrumb } from 'antd';
 import Pagination from '@mui/material/Pagination';
-// import PageControl from "./PageControl"
 import usePagination from "./Pagination";
 
-function AllVenues(pageNumber, nextPage, previousPage){
+function AllVenues(){
     const [search, setSearch] = useState("");
     const [venueData, setVenueData] = useState([])
     const [loader, setLoader] = useState(false)
@@ -82,11 +81,7 @@ function AllVenues(pageNumber, nextPage, previousPage){
                             renderInput={(params) => <TextField value={search} onChange={e=>setSearch(e.target.value)} {...params} label="search here" />}
                         />
                     </Stack>
-                    {/* <PageControl
-                        pageNumber={pageNumber}
-                        nextPage={nextPage}
-                        previousPage={previousPage}
-                    />             */}
+                   
                    
                     <div className="row">
                     {_DATA.currentData().map((i=> {

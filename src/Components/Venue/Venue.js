@@ -335,7 +335,7 @@ function Venue(){
                     </div>
                 </div>
             </div>
-                <Footer/>
+                {/* <Footer/> */}
             </Fragment>
             
         </section>
